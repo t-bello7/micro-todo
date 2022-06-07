@@ -1,0 +1,39 @@
+:root{
+    --clr-primary: #f0C38E;
+    --clr-secondary: #312C51;
+}
+
+.bg-primary{ background-color: var(--clr-primary);}
+.bg-secondary{ background-color: var(--clr-secondary);}
+
+*, 
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 50%;
+    margin: 0 auto;
+}
+
+.tasks {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 323px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before 
+    *::after{
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
