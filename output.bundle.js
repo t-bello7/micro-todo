@@ -116,7 +116,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\n//# sourceURL=webpack://micro-todo/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\r\nlet taskContainer = document.querySelector('.tasks')\r\n\r\nlet task = {\r\n    description: \"\",\r\n    completed: \"\",\r\n    index: \"\"\r\n}\r\nlet taskArr = [\r\n    {\r\n        description: \" wash the dishes\",\r\n        completed: \"\",\r\n        index: \"1\"\r\n    },\r\n    {\r\n        description: \"go out with friends\",\r\n        completed: \"\",\r\n        index: \"2\"\r\n    }\r\n]\r\n\r\n// const renderElements = (arr, container) => {\r\n//     arr.forEach(element => {\r\n//         let task = document.createElement('div').innerHTML(`${arr.description}`\r\n//         )\r\n//         container.innerHTML += task\r\n//     });\r\n// }\n\n//# sourceURL=webpack://micro-todo/./src/index.js?");
 
 /***/ })
 
