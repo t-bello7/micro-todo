@@ -14,6 +14,14 @@ module.exports = {
         "https": false,
         "stream": false,
         "crypto": false,
+        "util": false,
+        "buffer": false,
+        "url": false,
+        "vm": false,
+        "querystring": false,
+        "os": false,
+        "constants": false,
+        "assert": false,
     }
     },
     plugins: [
