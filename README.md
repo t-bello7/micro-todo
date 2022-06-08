@@ -13,7 +13,7 @@
 
 ## Live Demo (if available)
 
-[Live Demo Link](https://t-bello7.github.io/micro-webpack/)
+[Live Demo Link](https://t-bello7.github.io/micro-todo/)
 
 
 ## Getting Started
