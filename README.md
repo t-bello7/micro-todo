@@ -40,6 +40,8 @@ npx eslint .
 ## Resources
 - https://web.archive.org/web/20180320194056/http://www.getminimalist.com:80/
 - https://www.behance.net/gallery/141486825/Mi-Do-A-minimalistic-To-do-Planner?tracking_source=search_projects%7Ctodo%20list%20web%20design
+
+- https://www.javascripttutorial.net/web-apis/javascript-drag-and-drop/
 ## Authors
 
 👤 **Author1**
