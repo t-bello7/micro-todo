@@ -1,5 +1,5 @@
 import './style.css';
-import {addTask, removeTask, getTasks} from './modules/task.js';
+import {addTask, removeTask, getTasks, checkTask} from './modules/task.js';
 const taskContainer = document.querySelector('.task-list');
 const taskInput = document.querySelector('.task-input');
 const taskEnter = document.querySelector('.task-enter');
@@ -17,7 +17,7 @@ const renderElements = (arr, container) => {
     container.innerHTML = '';
     arr.forEach( element => {
         let task = document.createElement('div')
-        task.innerHTML = `<input type="checkbox" class="task-check" data-id="${element.index}"> <input type="input" class="task-edit" value="${element.description}">`
+        task.innerHTML = `<input type="checkbox" id="${element.index}" class="task-check" data-id="${element.index}" value="${element.completed}"> <input type="input" for="${element.index}" class="task-edit" value="${element.description}"> <button class="task-delete" >delete</button>`
         container.appendChild(task)
     })
 }
@@ -46,18 +46,16 @@ taskInput.addEventListener('keypress',(e)=> {
 })
 
 taskContainer.addEventListener('click', e => {
-    const taskId = e.target.closest('.task-check')
+    const taskDelete = e.target.closest('.task-delete')
     const taskEdit = e.target.closest('.task-edit');
-    if (taskId){
-        console.log(taskId.nextElementSibling)
-        let index = taskId.getAttribute('data-id')
+    const taskCheck = e.target.closest('.task-check');
+    if (taskCheck){
+        let index = taskCheck.getAttribute('data-id');
+        checkTask(taskCheck, index, taskArr)
+    }
+    if (taskDelete){
+        let index = taskDelete.previousElementSibling.previousElementSibling.getAttribute('data-id');
         removeTask(index, taskArr);
-        taskArr.forEach(element=> {
-            if (element.index > index){
-                element.index = element.index - 1; 
-            }
-        })
-        localStorage.setItem('taskArr', JSON.stringify(taskArr))
         renderElements(taskArr, taskContainer);
     }
     if (taskEdit){
@@ -70,13 +68,17 @@ taskContainer.addEventListener('click', e => {
             }
         })  
         renderElements(taskArr, taskContainer);
-
         })
     }
 })
 
 taskClear.addEventListener('click', ()=>{
-    taskArr = []
+    taskArr = getTasks();
+    taskArr = taskArr.filter(element => element.completed === false)
+    taskArr = taskArr.map((element,index) => {
+        element.index = index+1
+        return element
+    })
     localStorage.setItem('taskArr', JSON.stringify(taskArr))
     renderElements(taskArr, taskContainer);
 })
