@@ -17,6 +17,7 @@ const renderElements = (arr, container) => {
     container.innerHTML = '';
     arr.forEach( element => {
         let task = document.createElement('div')
+        task.classList.add('bg-secondary')
         task.innerHTML = `<input type="checkbox" id="${element.index}" class="task-check" data-id="${element.index}" value="${element.completed}"> <input type="input" for="${element.index}" class="task-edit" value="${element.description}"> <button class="task-delete" >delete</button>`
         container.appendChild(task)
     })

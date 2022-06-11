@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@300&display=swap');
 :root{
     --clr-primary: #f0C38E;
     --clr-secondary: #312C51;
+    --ff-kdam: 'Saira Semi Condensed';
 }
 
 .bg-primary{ background-color: var(--clr-primary);}
@@ -12,6 +14,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--ff-kdam), sans-serif;
 }
 
 .container {
@@ -33,6 +36,25 @@
     padding: 1rem;
 }
 
+.task-input-container {
+    display: flex;
+    justify-content: space-between;
+    height: 2rem;
+    background-color: #fff;
+    padding-inline: 0.5rem;
+    border-radius: 0.2rem;
+}
+
+.task-input-container .task-input {
+    width: 100%;
+    border: none;
+    font-size: 1rem;
+}
+
+.task-input-container .task-input:focus{
+    outline: none;
+}
+
 .task-list{
     border-radius: 10px;
     margin-block: 1rem;
@@ -43,8 +65,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
-  padding-bottom: 0.5rem;
+  gap: 0.5em;
+  padding: 0.5rem;
   border-bottom: 1px solid var(--clr-primary);
 }
 
@@ -71,6 +93,17 @@
     color: var(--clr-secondary);
 }
 
+.task-edit{
+    border: none;
+    background: transparent;
+    color: var(--clr-primary);
+    width: 100%;
+    font-size: 1rem;
+}
+
+.task-edit:focus{
+    outline: 0;
+}
 .task-complete{
    margin: 0 auto;
    width: 100%;
