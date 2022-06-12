@@ -1,15 +1,27 @@
 import './style.css';
+import { library, dom } from "@fortawesome/fontawesome-svg-core";
+import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
+import { faTrash } from "@fortawesome/free-solid-svg-icons/faTrash";
+import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons/faArrowsRotate";
+import { faBars } from "@fortawesome/free-solid-svg-icons/faBars";
+import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons/faEllipsisVertical";
 import {addTask, removeTask, getTasks, checkTask} from './modules/task.js';
 const taskContainer = document.querySelector('.task-list');
 const taskInput = document.querySelector('.task-input');
 const taskEnter = document.querySelector('.task-enter');
-const taskClear = document.querySelector('.task-complete')
+const taskClear = document.querySelector('.task-completed');
 
 let task = {
     description: "",
     completed: "",
     index: ""
 }
+
+
+library.add(faCheck, faTrash,faArrowRight, faBars, faArrowsRotate, faEllipsisVertical);
+
+dom.watch();
 
 let taskArr = getTasks();
 
@@ -18,7 +30,7 @@ const renderElements = (arr, container) => {
     arr.forEach( element => {
         let task = document.createElement('div')
         task.classList.add('bg-secondary')
-        task.innerHTML = `<input type="checkbox" id="${element.index}" class="task-check" data-id="${element.index}" value="${element.completed}"> <input type="input" for="${element.index}" class="task-edit" value="${element.description}"> <button class="task-delete" >delete</button>`
+        task.innerHTML = `<input type="checkbox" id="${element.index}" class="task-check" data-id="${element.index}" value="${element.completed}"> <input type="input" for="${element.index}" class="task-edit" value="${element.description}"> <button class="rm-btn-default clr-primary task-delete"><i class="fa-solid fa-trash"></i></button> <button class="rm-btn-default clr-primary task-drag"><i class="fa-solid fa-ellipsis-vertical"></i> </button>`
         container.appendChild(task)
     })
 }
@@ -32,7 +44,11 @@ taskInput.addEventListener('input', (e)=> {
     task.description = e.target.value;
 })
 
+
+
+
 taskEnter.addEventListener('click', (e) => {
+    e.preventDefault();
     addTask(task,taskArr)
     taskArr=getTasks()
     taskInput.value = ''

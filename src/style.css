@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@300&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css');
 :root{
     --clr-primary: #f0C38E;
     --clr-secondary: #312C51;
@@ -7,6 +8,9 @@
 
 .bg-primary{ background-color: var(--clr-primary);}
 .bg-secondary{ background-color: var(--clr-secondary);}
+
+.clr-primary { color: var(--clr-primary);}
+.clr-secondary { color: var(--clr-secondary);}
 
 *, 
 *::before,
@@ -26,6 +30,10 @@
     text-align: center;
 }
 
+.rm-btn-default{
+    background: transparent;
+    border: none;
+}
 .tasks {
     position: absolute;
     top: 50%;
@@ -49,10 +57,15 @@
     width: 100%;
     border: none;
     font-size: 1rem;
+    color: var(--clr-secondary)
 }
 
 .task-input-container .task-input:focus{
     outline: none;
+}
+
+.task-enter {
+    cursor: pointer;
 }
 
 .task-list{
@@ -78,19 +91,14 @@
 }
 
 .task-check:checked{
-    background-color: var(--clr-primary);
+    background-image: url(./assets/img/check-solid.svg);
     border: 1px solid var(--clr-secondary);
     color: var(--clr-secondary);
     position: relative;
 }
 
-.task-check:checked:after {
-    content: '\f00c';
-    font-size: 14px;
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    color: var(--clr-secondary);
+.task-check:checked ~ .task-edit{
+    text-decoration: line-through;
 }
 
 .task-edit{
@@ -112,6 +120,11 @@
    background-color: var(--clr-secondary);
    border: 1px solid var(--clr-primary);
    color: var(--clr-primary);
+}
+
+.task-complete-icon{
+    position: relative;
+    right: -93%;
 }
 @media (prefers-reduced-motion: reduce) {
     *,
