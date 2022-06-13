@@ -30,10 +30,28 @@
     text-align: center;
 }
 
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--clr-primary);
+}
+
+.draggable {
+    opacity: .2;
+}
+
+.drag-over {
+    background-color: red;
+}
 .rm-btn-default{
     background: transparent;
     border: none;
+    cursor: pointer;
 }
+
 .tasks {
     position: absolute;
     top: 50%;
@@ -64,8 +82,8 @@
     outline: none;
 }
 
-.task-enter {
-    cursor: pointer;
+.task-drag {
+    cursor:grab;
 }
 
 .task-list{
@@ -74,20 +92,12 @@
     padding: 0.5rem;
 }
 
-.task-list > * {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5em;
-  padding: 0.5rem;
-  border-bottom: 1px solid var(--clr-primary);
-}
-
 .task-check {
     -webkit-appearance: none;
     padding: 6px;
     border: 1px solid var(--clr-primary);
     background-color: var(--clr-secondary);
+    cursor:pointer;
 }
 
 .task-check:checked{
@@ -107,6 +117,7 @@
     color: var(--clr-primary);
     width: 100%;
     font-size: 1rem;
+    height: inherit;
 }
 
 .task-edit:focus{
