@@ -2,7 +2,7 @@ import { updateStorage, getStorage } from './localStorage.js';
 
 export const getTasks = () => {
   let taskArr = [];
-  if (getStorage('taskArr').length !== 0) {
+  if (getStorage('taskArr') !== null) {
     taskArr = getStorage('taskArr');
   }
   return taskArr;
@@ -34,4 +34,22 @@ export const checkTask = (taskCheck, index, taskArr) => {
       }
     }
   });
+};
+
+export const clearCompletedTask = (taskArr) => {
+  taskArr = taskArr.filter((element) => element.completed === false);
+  taskArr = taskArr.map((element, index) => {
+    element.index = index + 1;
+    return element;
+  });
+  return taskArr;
+};
+
+export const editTask = (index, taskArr, value) => {
+  taskArr.forEach((element) => {
+    if (element.index === parseInt(index, 10)) {
+      element.description = value;
+    }
+  });
+  return taskArr;
 };
