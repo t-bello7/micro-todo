@@ -1,20 +1,23 @@
-import { getTasks } from '../src/modules/task.js';
-import LocalStorage from '../__mocks__/localStorage.js';
+import { addTask, removeTask } from '../__mocks__/task';
+jest.mock('../src/modules/task');
 
-let testTasks = new LocalStorage;
-const task = {
-    description: '',
-    completed: '',
-    index: '',
-};
 
-for (let i = 0; i < 3; i++){
-    task.index = i+1
-    task.description = `${task.index} + task`
-    task.completed = false;
-    testTasks.updateStorage('taskArr', task)
-}
+describe(' Task Create and Delete',()=>{
+    describe("Create Task",() => {
+        test("add a task to the list", () => {
+            const list = [];
+            expect(addTask('Task created', list)).toStrictEqual([{ description: 'Task created', completed: false,index: 1}])
+        })  
+    })
 
-test('test task returned',()=>{
-    expect(getTasks).toBe('returned Array');
+    describe("Delete Task", ()=> {
+        test("delete a task from list", () => {
+            const list = [
+                {description: 'Task Created 1', completed: false, index: 1},
+                {description: 'Task Created 2', completed: false, index: 2}
+            ]
+            expect(removeTask(2, list)).toStrictEqual([{description: 'Task Created 1', completed: false, index: 1}])
+        })
+    })
+
 })

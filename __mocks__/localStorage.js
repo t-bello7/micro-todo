@@ -3,8 +3,8 @@ export default class LocalStorage {
       this.localStorage = [];
     }
     
-    getStorage = (key) => {
-      return this.localStorage[key] || null;
+    getStorage = () => {
+      return this.localStorage;;
     }
   
     updateStorage = (key, value) => {
@@ -16,4 +16,4 @@ export default class LocalStorage {
     }
 }
 
-global.localStorage = new LocalStorageMock;
+global.localStorage = new LocalStorage;
