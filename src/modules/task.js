@@ -1,14 +1,16 @@
+import { getStorage, updateStorage} from "./localStorage.js";
+
 export const getTasks = () => {
   let taskArr = [];
-  if (localStorage.getItem('taskArr') != null) {
-    taskArr = JSON.parse(localStorage.getItem('taskArr'));
+  if (getStorage('taskArr') != null) {
+    taskArr = getStorage('taskArr');
   }
   return taskArr;
 };
 
 export const addTask = (task, taskArr) => {
   taskArr.push(task);
-  localStorage.setItem('taskArr', JSON.stringify(taskArr));
+  updateStorage('taskArr', taskArr);
 };
 
 export const removeTask = (index, taskArr) => {
@@ -18,7 +20,7 @@ export const removeTask = (index, taskArr) => {
       element.index -= 1;
     }
   });
-  localStorage.setItem('taskArr', JSON.stringify(taskArr));
+  updateStorage('taskArr', taskArr);
 };
 
 export const checkTask = (taskCheck, index, taskArr) => {
@@ -26,10 +28,10 @@ export const checkTask = (taskCheck, index, taskArr) => {
     if (element.index === parseInt(index, 10)) {
       if (taskCheck.checked === true) {
         element.completed = true;
-        localStorage.setItem('taskArr', JSON.stringify(taskArr));
+        updateStorage('taskArr',taskArr);
       } else {
         element.completed = false;
-        localStorage.setItem('taskArr', JSON.stringify(taskArr));
+        updateStorage('taskArr',taskArr);
       }
     }
   });

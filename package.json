@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "start": "webpack serve --open"
+    "start": "webpack serve --open",
+    "test": "jest --coverage"
   },
   "license": "MIT",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.18.2",
     "babel-eslint": "10.x",
     "css-loader": "^6.7.1",
     "eslint": "7.x",
@@ -15,6 +17,7 @@
     "eslint-plugin-import": "2.x",
     "hint": "6.x",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.1.1",
     "style-loader": "^3.3.1",
     "stylelint": "13.x",
     "stylelint-config-standard": "21.x",
@@ -29,5 +32,6 @@
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1"
-  }
+  },
+  "type": "module"
 }
