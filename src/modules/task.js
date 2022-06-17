@@ -8,12 +8,14 @@ export const getTasks = () => {
   return taskArr;
 };
 
-export const addTask = (task, taskArr) => {
+export const addTask = (task) => {
+  let taskArr = getTasks();
   taskArr.push(task);
   updateStorage('taskArr', taskArr);
 };
 
-export const removeTask = (index, taskArr) => {
+export const removeTask = (index) => {
+  let taskArr = getTasks();
   taskArr.splice(index - 1, 1);
   taskArr.forEach((element) => {
     if (element.index > index) {
