@@ -43,7 +43,7 @@ export const clearCompletedTask = (taskArr) => {
     return element;
   });
   return taskArr;
-}
+};
 
 export const editTask = (index, taskArr, value) => {
   taskArr.forEach((element) => {
@@ -51,6 +51,5 @@ export const editTask = (index, taskArr, value) => {
       element.description = value;
     }
   });
-  return taskArr
-
-}
+  return taskArr;
+};

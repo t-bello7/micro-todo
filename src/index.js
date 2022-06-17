@@ -9,7 +9,7 @@ import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons/faArrowsRotate
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons/faEllipsisVertical';
 import {
-  addTask, removeTask, getTasks, checkTask, clearCompletedTask, editTask
+  addTask, removeTask, getTasks, checkTask, clearCompletedTask, editTask,
 } from './modules/task.js';
 
 const taskContainer = document.querySelector('.task-list');
@@ -128,7 +128,7 @@ taskContainer.addEventListener('click', (e) => {
   if (taskEdit) {
     const index = taskEdit.previousElementSibling.getAttribute('data-id');
     taskEdit.addEventListener('change', (e) => {
-      let value = e.target.value;
+      const { value } = e.target;
       taskArr = editTask(index, taskArr, value);
       localStorage.setItem('taskArr', JSON.stringify(taskArr));
       renderElements(taskArr, taskContainer);
@@ -139,11 +139,8 @@ taskContainer.addEventListener('click', (e) => {
 taskClearArr.forEach((element) => {
   element.addEventListener('click', () => {
     let taskArr = getTasks();
-    taskArr = clearCompletedTask(taskArr)
+    taskArr = clearCompletedTask(taskArr);
     localStorage.setItem('taskArr', JSON.stringify(taskArr));
     renderElements(taskArr, taskContainer);
   });
 });
-
-
-export {renderElements};
