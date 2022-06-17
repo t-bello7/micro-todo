@@ -9,7 +9,7 @@ import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons/faArrowsRotate
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons/faEllipsisVertical';
 import {
-  addTask, removeTask, getTasks, checkTask,
+  addTask, removeTask, getTasks, checkTask, clearCompletedTask, editTask
 } from './modules/task.js';
 
 const taskContainer = document.querySelector('.task-list');
@@ -128,12 +128,9 @@ taskContainer.addEventListener('click', (e) => {
   if (taskEdit) {
     const index = taskEdit.previousElementSibling.getAttribute('data-id');
     taskEdit.addEventListener('change', (e) => {
-      taskArr.forEach((element) => {
-        if (element.index === parseInt(index, 10)) {
-          element.description = e.target.value;
-          localStorage.setItem('taskArr', JSON.stringify(taskArr));
-        }
-      });
+      let value = e.target.value;
+      taskArr = editTask(index, taskArr, value);
+      localStorage.setItem('taskArr', JSON.stringify(taskArr));
       renderElements(taskArr, taskContainer);
     });
   }
@@ -141,13 +138,12 @@ taskContainer.addEventListener('click', (e) => {
 
 taskClearArr.forEach((element) => {
   element.addEventListener('click', () => {
-    taskArr = getTasks();
-    taskArr = taskArr.filter((element) => element.completed === false);
-    taskArr = taskArr.map((element, index) => {
-      element.index = index + 1;
-      return element;
-    });
+    let taskArr = getTasks();
+    taskArr = clearCompletedTask(taskArr)
     localStorage.setItem('taskArr', JSON.stringify(taskArr));
     renderElements(taskArr, taskContainer);
   });
 });
+
+
+export {renderElements};
