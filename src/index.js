@@ -11,6 +11,8 @@ import {
   addTask, removeTask, getTasks, checkTask,
 } from './modules/task.js';
 
+import { updateStorage } from './modules/localStorage.js';
+
 const taskContainer = document.querySelector('.task-list');
 const taskInput = document.querySelector('.task-input');
 const taskEnter = document.querySelector('.task-enter');
@@ -18,11 +20,7 @@ const taskClear = document.querySelectorAll('.task-completed');
 
 const taskClearArr = [...taskClear];
 
-const task = {
-  description: '',
-  completed: '',
-  index: '',
-};
+const task = {};
 
 library.add(faCheck, faTrash, faArrowRight, faBars, faArrowsRotate, faEllipsisVertical);
 
@@ -89,18 +87,16 @@ document.addEventListener('DOMContentLoaded', () => {
 renderElements(taskArr, taskContainer);
 
 taskInput.addEventListener('input', (e) => {
-  const taskArrLength = getTasks().length;
-  task.index = taskArrLength + 1;
+  task.index = getTasks().length + 1;
   task.completed = false;
   task.description = e.target.value;
 });
 
 taskEnter.addEventListener('click', (e) => {
   e.preventDefault();
-  addTask(task, taskArr);
-  taskArr = getTasks();
+  addTask(task);
   taskInput.value = '';
-  renderElements(taskArr, taskContainer);
+  renderElements(getTasks(), taskContainer);
 });
 
 taskInput.addEventListener('keypress', (e) => {
@@ -121,8 +117,8 @@ taskContainer.addEventListener('click', (e) => {
   }
   if (taskDelete) {
     const index = taskDelete.previousElementSibling.previousElementSibling.getAttribute('data-id');
-    removeTask(index, taskArr);
-    renderElements(taskArr, taskContainer);
+    removeTask(index);
+    renderElements(getTasks(), taskContainer);
   }
   if (taskEdit) {
     const index = taskEdit.previousElementSibling.getAttribute('data-id');
@@ -130,10 +126,10 @@ taskContainer.addEventListener('click', (e) => {
       taskArr.forEach((element) => {
         if (element.index === parseInt(index, 10)) {
           element.description = e.target.value;
-          localStorage.setItem('taskArr', JSON.stringify(taskArr));
+          updateStorage('taskArr', taskArr);
         }
       });
-      renderElements(taskArr, taskContainer);
+      renderElements(getTasks(), taskContainer);
     });
   }
 });
