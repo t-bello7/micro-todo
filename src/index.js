@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 
-import './style.css';
+// import './style.css';
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
