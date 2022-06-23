@@ -98,16 +98,19 @@ taskInput.addEventListener('input', (e) => {
 
 taskEnter.addEventListener('click', (e) => {
   e.preventDefault();
-  addTask(task, taskArr);
-  taskArr = getTasks();
-  taskInput.value = '';
-  renderElements(taskArr, taskContainer);
+  if (taskInput.value){
+    addTask(task, taskArr);
+    taskArr = getTasks();
+    renderElements(taskArr, taskContainer);
+    taskInput.value =''
+  }
 });
 
 taskInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
+  if (e.key === 'Enter' && taskInput.value) {
     e.preventDefault();
     taskEnter.click();
+    taskInput.value =''
   }
 });
 
