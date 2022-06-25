@@ -1,0 +1,1 @@
+(()=>{"use strict";chrome.runtime.onMessage.addListener(((e,a,o)=>{"GREETINGS"===e.type&&o({message:`Hi ${a.tab?"Con":"Pop"}, my name is Bac. I am from Background. It's great to hear from you.`})}))})();
